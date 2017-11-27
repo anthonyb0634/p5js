@@ -73,7 +73,7 @@
 
 <body>
     <div id="code" class="container-fluid">
-        <script src="https://gist-it.appspot.com/github/Anthonyb0634/p5js/blob/master/project.html?footer=0"></script>
+        <script src="https://gist-it.appspot.com/github/Anthonyb0634/p5js/blob/master/Project.html?footer=0"></script>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -86,14 +86,3 @@
 
 
 </html>
-
-<!--coloring book project-->
-
-<!--a flower to color -->
-<!--4 ellipse (pedals) 1 ellipse (middle)-->
-<!--key press r == red color fill-->
-<!--key press b == blue color fill-->
-<!--key press g == green color fill-->
-<!--key press h == random color fill-->
-<!--key press e == erase fill -->
-<!--stroke weight == 0.75-->
