@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+
+    <script>
+        var leftwall;
+        var rightwall;
+        var xc;
+
+        function setup() {
+           
+            leftwall = 400;
+            rightwall = 200
+            background("white");
+           
+            createCanvas(800, 800);
+            // flower 
+            strokeWeight(1.9);
+            rect(300, 300, 45, 300); // Stem 
+            ellipse(200, 300, 150, 150); // Left Pedal 
+            ellipse(300, 200, 150, 150); // Top Pedal 
+            ellipse(300, 400, 150, 150); // Bottem Pedal
+            ellipse(400, 300, 150, 150); // Right Pedal 
+            ellipse(300, 300, 95, 95); // Middle
+            ellipse(320, 300, 10, 10); // Middle Design 
+            ellipse(300, 320, 10, 10); // Middle Design 
+            ellipse(280, 300, 10, 10); // Middle Design
+            ellipse(300, 280, 10, 10); // Middle Design
+            ellipse(300, 300, 10, 10); // Middle Design
+            fill(230);
+        }
+
+        function draw() {
+            frameRate(0.2);
+            strokeWeight(0);
+            ellipse (mouseX,mouseY,10,10); // paint brush
+            
+            
+            
+            
+          }
+
+        function keyPressed() {
+            // ( RED , BLUE , GREEN , ALPHA )
+
+            if (key.toLowerCase() == "r") { // Fill set to red if R pressed 
+                fill(255, 0, 0);
+            }
+            if (key.toLowerCase() == "b") { //Fill set to blue if B pressed 
+                fill(0, 0, 255);
+            }
+            if (key.toLowerCase() == "g") { // Fill set to green if G pressed
+                fill(0, 255, 0);
+            }
+            if (key.toLowerCase() == "h") { // Fill set to Random if H pressed
+                fill(random(255), random(255), random(255));
+            }
+            if (key.toLowerCase() == "e") { // Fill set to white if E pressed  
+                fill(255);
+                stroke(255);
+            }
+        }
+
+
+        function mouseDragged() {
+            frameRate(100);
+            }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/Anthonyb0634/p5js/blob/master/project.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
+
+<!--coloring book project-->
+
+<!--a flower to color -->
+<!--4 ellipse (pedals) 1 ellipse (middle)-->
+<!--key press r == red color fill-->
+<!--key press b == blue color fill-->
+<!--key press g == green color fill-->
+<!--key press h == random color fill-->
+<!--key press e == erase fill -->
+<!--stroke weight == 0.75-->
