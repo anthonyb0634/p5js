@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Pong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+        var ballX;
+        var ballY;
+        var ballSpeedX = 5;
+        var ballSpeedY = 5;
+        var paddleHeight = 30;
+
+        function setup() {
+            createCanvas(800,600);
+            noCursor();
+            
+            // SPAWN BALL RANDOM AREA OF THE SCREEN
+            ballX = random(width);
+            ballY = random(height / 2);
+        }
+
+        function draw() {
+            background(128);
+            moveBall();
+            checkCollide();
+            drawPaddle();
+            drawBall();
+            obsticles();
+            drawRectangles();
+            
+        }
+
+        function moveBall() {
+            ballX = ballX + ballSpeedX;
+            ballY = ballY + ballSpeedY;
+
+            console.log("ballSpeedX: " + ballSpeedX + 
+                        ", ballSpeedY: " + ballSpeedY);
+        }
+
+        function checkCollide() { // checking if game should continue or end
+            if (ballX < 0 || ballX > width) {
+                ballSpeedX = ballSpeedX * -1;
+            }
+            if (ballY < 0) {
+                ballSpeedY = ballSpeedY * -1;
+            }
+            
+            
+            if (ballY > height-paddleHeight){ // ball is past goal line vertically
+                if (ballX > mouseX && ballX < mouseX+200) { // ball is within paddle horizontally
+                    ballSpeedY = ballSpeedY * -1;
+                    ballSpeedY --;
+                }
+                else {
+                    text("GAME OVER!", width / 2, height / 2);
+                    noLoop();
+                }
+            }
+        }
+
+        function drawBall() {  //  BALL
+            
+            strokeWeight(4);
+            noStroke();
+            ellipse(ballX, ballY, 20, 20);
+        }
+        function drawPaddle() {  // PADDLE
+           
+           strokeWeight(4);
+            stroke(random(255),random(255),random(255));
+            rect(mouseX, height - paddleHeight - 4, 200, paddleHeight);
+        }
+        function obsticles () {
+            if (ballX > 100 && ballX < 100 + 150 && ballY > 230 && ballY < 230 + 50){ // rectangle 1 (left)
+              ballSpeedY = ballSpeedY * -1;
+            }
+        
+            if (ballX > 300 && ballX < 300 + 150 && ballY > 230 && ballY < 230 + 50){ // rectangle 2 (middle)
+              ballSpeedY = ballSpeedY * -1;
+            }
+              
+            if (ballX > 500 && ballX < 500 + 150 && ballY > 230 && ballY < 230 + 50){ // rectangle 3 (right)
+              ballSpeedY = ballSpeedY * -1; 
+            }
+            }
+        function drawRectangles(){
+            strokeWeight(4);
+            stroke(random(255),random(255),random(255));
+            
+            rect(100,230,150,50); // rectangle 1 (left)
+            rect(300,230,150,50); // rectangle 2 (middle)
+            rect(500,230,150,50); // rectangle 3 (right)
+            
+        }
+      
+            
+         
+    </script>
+</head>
+
+body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/anthonyb0634/p5js/blob/gh-pages/remix-examples.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
