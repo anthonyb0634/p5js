@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+
+    <script>
+        var cars = [];
+        var emptySpace
+
+        function setup() {
+            createCanvas(500, 500);
+            noCursor();
+
+            for (i = 0; i < 6; i++) {                                           // make 6 cars
+                cars.push(new Car(255, 255, 255))
+            }
+        }
+
+        function draw() {
+            background(0);
+            person();
+
+            for (var i = 0; i < cars.length; i++) {
+                cars[i].move();
+                cars[i].display();
+                checkCollide();
+                cars[i].speed += 0.001;
+
+            }
+                                                                                // how the player knows that they lost
+            textSize(20);
+            text("Time: " + Math.floor(frameCount / 30), 10, 490);
+            text("Score: "+ Math.floor(frameCount / 100), 105, 490);
+            text("difficulty: "+ Math.floor(frameCount / 170), 205,490);
+        }
+
+        function Car(r, g, b) {
+            this.x = random(width);                                             // random x location
+            this.y = random(0, 400);                                            // random y location
+            this.speed = 1;                                                     // cars speed
+            this.red = r;
+            this.green = g; 
+            this.blue = b;
+
+            this.move = function() {
+                this.x += this.speed; 
+                if (this.x > width) {                                           // if the car is passed the screen
+                    this.x = 0;                                                 // respawn the car on the left 
+                    this.y = random(0, height)                                  // give car new y location
+                }
+            }
+
+            this.display = function() {
+                fill(255);
+                stroke(random(255), random(255), random(255));
+                ellipse(this.x + 25,this.y,25,25);                              // top left wheel
+                ellipse(this.x + 75,this.y,25,25);                              // top right weel
+                ellipse(this.x + 25,this.y + 50,25,25);                         // bottem left wheel
+                ellipse(this.x + 75,this.y + 50,25,25);                         // bottem right wheel
+                rect(this.x, this.y, 100, 50);                                  // car base
+                rect(this.x, this.y, 80, 50);                                   // car windsheild
+
+
+            }
+        }
+
+        function person() {                                                     // player controlling cirlce
+            stroke(255);
+            strokeWeight(5);
+            fill(random(0,150),random(0,150),random(0,150));
+            ellipse(mouseX, mouseY, 25, 25);
+
+        }
+
+        function checkCollide() {                                               //check if the cars crashed
+            for (var i = 0; i < cars.length; i++) { 
+                if (mouseX > cars[i].x - 20 &&                                  // if player is in contact of the car
+                    mouseX < cars[i].x + 100 &&           
+                    mouseY > cars[i].y - 20 &&
+                    mouseY < cars[i].y + 50
+                ) {
+                                                                                // what happens when player crashes into a car
+                    background(0);
+                    noLoop();
+                    textSize(75);
+                    text("GAME OVER!", 10, 250);
+                    textSize(25);
+                    text("Check score below!",130,300);
+                    text("**click reset to play again**",10,21);
+                    
+
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/anthonyb0634/p5js/blob/master/final-project.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+
+</html>
